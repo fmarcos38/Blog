@@ -9,6 +9,9 @@ class Category extends Model
 {
     use HasFactory;
 
+    /* declaro propiedad PARA la asignación masiva Q se usa para la creación */
+    protected $fillable = ['name', 'slug'];
+
     /* RELACIONES */
     /* relación 1 a muchos con post */
     public function posts(){

@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Blog</b>Pepe',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',/* ----------> PARA CAMBIAR EL LOGO <------------- */
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',  
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png', 
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '/',  /* cambié a / --> para q al hacer click sobre el logo me dirija a la pag principal */
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -312,17 +312,18 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'dashboard',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Dashboard',  /* Item Dashboard */
+            'url'         => 'admin',
+            'icon'        => 'fas fa-tachometer-alt fa-fw', /* cambié las clases desde el icono q quiero en la pag -->https://fontawesome.com/ */
+            /* 'label'       => 4,
+            'label_color' => 'success', */  /* lo comento porq no lo necesito */
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'ADMINISTRADOR'], /* cambié de Acount setting a ADMIN.. */
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Categorías',
+            /* 'url'  => 'admin/settings', */ /* cambio por route */
+            'route' => 'admin.categories.index', /* ruta q muestra las categorias */
+            'icon' => 'fab fa-fw fa-buffer',
         ],
         [
             'text' => 'change_password',
