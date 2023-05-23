@@ -20,4 +20,9 @@ export default {
     },
 
     plugins: [forms, typography],
+
+    /* anulo la clase container  */
+    /* corePlugins: {
+        container: false
+    } */
 };
