@@ -40,7 +40,7 @@ class CategoryController extends Controller
         /* creo la nueva categoría */
         $category = Category::create($request->all());
 
-        return redirect()->route('admin.categories.edit', $category); //redirecciono a una ruta
+        return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoría se creo con exito');; //redirecciono a una ruta
 
     }
 
@@ -65,7 +65,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //declaro reglas de validación
+        $request->validate([
+            'name' => 'required',
+            'slug' => "required|unique:categories,slug,$category->id",  //categories ES la tabla en la q quiero q sea unico
+        ]);
+
+        $category->update($request->all()); //actualizo la data
+
+        return redirect()->route('admin.category.edit', $category)->with('info', 'La categoría se actualizó con exito');
     }
 
     /**
@@ -73,6 +81,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('info', 'La categoría se eliminó con exito');;
     }
 }

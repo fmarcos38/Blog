@@ -7,6 +7,14 @@
 @stop
 
 @section('content')
+
+    {{--  es para el aleta una vez actualizada la categoría  --}}
+    @if (session('info'))
+        <div class="alert alert-success">
+            <strong>{{session('alert')}}</strong>
+        </div>
+    @endif
+    
     {{--  estas Vistas estan desarrolladas con Boostrap -->asi q utilizo sus clases para dar estilos  --}}
     <div class="card">
 

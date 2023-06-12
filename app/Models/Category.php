@@ -12,6 +12,13 @@ class Category extends Model
     /* declaro propiedad PARA la asignación masiva Q se usa para la creación */
     protected $fillable = ['name', 'slug'];
 
+
+    /* metodo para q en la url en edit en ves de aparecer el ID de la categ aparezca el SLUG */
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     /* RELACIONES */
     /* relación 1 a muchos con post */
     public function posts(){

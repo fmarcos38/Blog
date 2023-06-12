@@ -150,7 +150,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true, /* al para de null a true DEJO fijo el menú de la barra al hacer scroll */
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
@@ -324,11 +324,14 @@ return [
             /* 'url'  => 'admin/settings', */ /* cambio por route */
             'route' => 'admin.categories.index', /* ruta q muestra las categorias */
             'icon' => 'fab fa-fw fa-buffer',
+            'active' => ['admin/categories*'],
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Etiquetas',
+            /* 'url'  => 'admin/settings', */ /* cambio por route */
+            'route' => 'admin.tags.index',
+            'icon' => 'far fa-fw fa-bookmark', /* este es el icono q se muestra */
+            'active' => ['admin/tags*'], /* con este item 'active' lo q logro es q me qde pintado en azul EL item Etiquetas siempre*/
         ],
         [
             'text'    => 'multilevel',
