@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('extractor');
-            $table->longText('body');
+            $table->string('extract')->nulable();
+            $table->longText('body')->nulable();
             $table->enum('status', [1, 2])->default(1);
             /* creo campos para las FK */
             $table->unsignedBigInteger('user_id');

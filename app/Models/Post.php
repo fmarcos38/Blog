@@ -9,6 +9,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    /* habilito la asignación masiva Q es para almacenar los datos en la DB */
+    //tamb puedo definir la asig masiva con ---->protected filabled<---------(PERO tendría q declarar TODOS los elemntos q quiero q se llenen
+    // Q son muchos más q los q NO..)
+    protected $guarded = [
+        //acá van los campos q NO quiero q se llenen por asig masiva.
+        'id', 'created_at', 'updated_at'
+    ];
+
     /* RELACIONES */
     /* relación 1 a muchos inversa con user */
     public function user(){
