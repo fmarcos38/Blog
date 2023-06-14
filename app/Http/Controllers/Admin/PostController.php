@@ -8,6 +8,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
+//este USE es para la manipulacion de la img Mueve la img de la carpeta temp a la carpeta q corresponde
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -51,8 +53,22 @@ class PostController extends Controller
     //Este metodo va a ejecutar previo a la creacíon del post las validaciones
     public function store(StorePostRequest $request)
     {
+        //con este codigo veo a donde va la img q envio
+        //return $request->file('file');
+        
+
         //una vez llamado este metodo SE ejecuta --> StorePostRequest
         $post = Post::create($request->all());
+
+        if($request->file('file')){
+            $url = Storage::put('posts', $request->file('file')); //param 1 DONDE quiero q se guarde, PARAM 2 donde está.
+
+            //genero la relación para la tabla correspondiente
+            //y creo el item en la tabla image --> debo habilitar la asignación masiva en dicho modelo
+            $post->image()->create([
+                'url' => $url,
+            ]);
+        }
 
         if($request->tags){ //si la info q quiero almac en la DB es de una Etiqueta entonces
             $post->tags()->attach($request->tags); //llamo al metodo q realiza la relacion muchos a muchos ENTRE post y etiqueta ES -->tags()

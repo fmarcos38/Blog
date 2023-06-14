@@ -31,6 +31,7 @@ class StorePostRequest extends FormRequest
             'name' => 'required',
             'slug' => 'required|unique:posts',
             'status' => 'required|in:1,2',
+            'file' => 'image',
         ];
 
         //estas reglas de validación SON para status == 2

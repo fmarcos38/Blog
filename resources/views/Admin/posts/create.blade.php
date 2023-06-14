@@ -10,8 +10,8 @@
     <div class="card">
         <div class="card-body">
             
-            
-            {!! Form::open(['route' => 'admin.posts.store', 'autocomplite' => 'off']) !!}
+            {{--  atento a PARA enviar arch dentro del form DEBO declarar 'files'=> true  --}}
+            {!! Form::open(['route' => 'admin.posts.store', 'autocomplite' => 'off', 'files' => true]) !!}
             
                 {{--  creo un input oculto para tener el ID del user logueado  --}}     
                 {{--  en realidad va  esto--> auth()->user()->id Q es para obt el ID del user log [PERO como me da error se lo harcodeo]            --}}
@@ -88,6 +88,34 @@
                         <small>{{$message}}</small>
                     @enderror
                 </div>
+
+                {{--  cargar img del post  --}}
+                {{--  creo una grilla con bootstrap-->es un div con la clase row Y por c/col un div(en este caso 2)  --}}
+                <div class="row mb-3">
+                    {{--  muestro img por defecto  --}}
+                    <div class="col">
+                        {{--  coloco la img dentro de un div para darle estilos --> LOS estilos CSS se escriben en LA SECCION de más abajo-->@section('css')  --}}
+                        <div class="image-wrapper">
+                            <img id="picture" src="https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg" alt="img not found">
+                        </div>                        
+                    </div>
+
+                    {{--  cargo img  --}}
+                    <div class="col">
+                        <div class="form-group">
+                            
+                            {!! Form::label('file', 'Elija una imagen') !!}                            
+                            {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}                            
+
+                            {{--  msj de error  --}}
+                            @error('file')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                </div>
+
                 {{--  extracto del post  --}}
                 <div class="form-group">                    
                     {!! Form::label('extract', 'Extracto del Post:') !!}
@@ -120,10 +148,25 @@
     </div>
 @stop
 
+{{--  sección para escribir CSS  --}}
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    //<link rel="stylesheet" href="/css/admin_custom.css">
+    
+    <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%
+        }
+        .image-wrapper img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 @stop
 
+{{--  ESTA es la section para escribir JS  --}}
 {{--  abro una nueva sesion PARA utilizar el pluing q bajé  --}}
 @section('js')
     <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>    
@@ -153,7 +196,24 @@
             .create( document.querySelector( '#body' ) )
             .catch( error => {
                 console.error( error );
-            } );
+            } );          
+        
     </script>
-    
+
+    {{--  scrip para el cambio de img  --}}
+    <script>
+        document.getElementById("file").addEventListener('change', cambiarImagen);
+            
+        function cambiarImagen(event){
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = (event) => {
+                document.getElementById("picture").setAttribute('src', event.target.result);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    </script>
+
 @endsection

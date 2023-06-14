@@ -7,7 +7,8 @@
             @foreach ($posts as $post)
                 <article 
                     class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2 lg:col-span-2 @endif" 
-                    style="background-image: url({{Storage::url($post->image->url)}})"
+                    //manejo de la imagen del post SI no se carga una se pone por defecto la d esa diraccion
+                    style="background-image: url(@if($post->image) {{Storage::url($post->image->url)}} @else https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg @endif)"
                 >
                     <div class="w-full h-full px-8 flex flex-col justify-center">
 

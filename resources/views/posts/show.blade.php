@@ -15,10 +15,11 @@
             <div class="lg:col-span-2">
                 {{--  img  --}}
                 <figure>
-                    <img
-                        class="w-full h-80 object-cover object-center"
-                        src="{{Storage::url($post->image->url)}}" alt="" 
-                    />
+                    @if ($post->image)
+                        <img src="{{Storage::url($similar->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
+                    @else
+                        <img src="https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg" alt="" class="w-36 h-20 object-cover object-center"/>
+                    @endif
                 </figure>
                 {{--  cont principal  --}}
                 <div class="text-base text-gray-500 mt-4">
@@ -37,7 +38,11 @@
                     @foreach($similares as $similar)
                         <li>
                             <a href="{{route('posts.show', $similar)}}" class="flex">
-                                <img src="{{Storage::url($similar->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
+                                @if ($post->image)
+                                    <img src="{{Storage::url($similar->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
+                                @else
+                                    <img src="https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg" alt="" class="w-36 h-20 object-cover object-center"/>
+                                @endif
                             </a>
                             {{--  muestro titulo del post relacionado CON el principal  --}}
                             <span>{{$similar->name}}</span>
