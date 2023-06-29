@@ -11,12 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        //acá voy a preguntar SI el id del user autentificado es igual al del user logueado
-        if($this->user_id == 1){//EN ves de 1 va -----> auth()->user()->id
-            return true;
-        }else{
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -26,13 +21,22 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
+        //creo variable para recuperar el post q modificaré
+        $post = $this->route()->parameter('post');
+
         //estas reglas de validación SON para status == 1
+        //estas reglas son para la creacion
         $rules = [
             'name' => 'required',
-            'slug' => 'required|unique:posts',
+            'slug' => 'required|unique:posts,slug',
             'status' => 'required|in:1,2',
             'file' => 'image',
         ];
+
+        //esta regla de validación es para el slug de editar post
+        if($post){
+            $rules['slug'] = 'required|unique:posts,slug,' . $post->id;
+        }
 
         //estas reglas de validación SON para status == 2
         //se concatenan las anteriores + las del IF

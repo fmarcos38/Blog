@@ -301,6 +301,9 @@ return [
             'topnav_right' => true,
         ],
 
+
+
+        /* ITEM DE LA NAVBAR--------------------------------------------------------------------- */
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -317,6 +320,11 @@ return [
             'icon'        => 'fas fa-tachometer-alt fa-fw', /* cambié las clases desde el icono q quiero en la pag -->https://fontawesome.com/ */
             /* 'label'       => 4,
             'label_color' => 'success', */  /* lo comento porq no lo necesito */
+        ],
+        [
+            'text'        => 'Usuarios',  /* Item Usuarios */
+            'route'       => 'admin.users.index', /* OJO ACÁ si pongo url o route */
+            'icon'        => 'fas fa-users fa-fw',/* lindo icono */
         ],
         ['header' => 'ADMINISTRADOR'], /* cambié de Acount setting a ADMIN.. */
         [
@@ -345,6 +353,11 @@ return [
             'icon' => 'fas fa-fw fa-file'
         ],
     ],
+
+    /*----FIN ITEM DE LA NAVBAR--------------------------------------------------------------------- */
+
+
+
 
     /*
     |--------------------------------------------------------------------------

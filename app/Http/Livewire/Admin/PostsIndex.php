@@ -23,10 +23,11 @@ class PostsIndex extends Component
     public function render()
     {
 
+        /* recupero los posts q le corresponden al user logeado */
         $posts = Post::where('user_id', 1/* auth()->user()->id */)
-                    ->where('name', 'LIKE', '%' . $this->search . '%')
-                    ->latest('id')
-                    ->paginate(1);/* compara el id deluser q creo el post, con el del user logeado, y pagino el array q me devuelve */
+                    ->where('name', 'LIKE','%' . $this->search . '%')//este items es para la busqda del post EN la searchBar
+                    ->latest('id') 
+                    ->paginate(2);//pagina de a 2 posts
                     
         return view('livewire.admin.posts-index', compact('posts'));
     }

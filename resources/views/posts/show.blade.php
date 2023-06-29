@@ -16,7 +16,7 @@
                 {{--  img  --}}
                 <figure>
                     @if ($post->image)
-                        <img src="{{Storage::url($similar->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
+                        <img src="{{Storage::url($post->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
                     @else
                         <img src="https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg" alt="" class="w-36 h-20 object-cover object-center"/>
                     @endif
@@ -38,7 +38,7 @@
                     @foreach($similares as $similar)
                         <li>
                             <a href="{{route('posts.show', $similar)}}" class="flex">
-                                @if ($post->image)
+                                @if ($similar->image)
                                     <img src="{{Storage::url($similar->image->url)}}" alt="" class="w-36 h-20 object-cover object-center"/>
                                 @else
                                     <img src="https://cdn.pixabay.com/photo/2016/11/18/18/39/beach-1836335_1280.jpg" alt="" class="w-36 h-20 object-cover object-center"/>

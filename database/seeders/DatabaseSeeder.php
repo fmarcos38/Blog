@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         //llamo al Facade antes importado PARA crear la carpeta posts
         Storage::makeDirectory('posts'); //NO funcionó LA cree a mano
 
+        //con este comando al ejecutar los seedes SE CREAN los pemisos en la DB
+        $this->call(RoleSeeder::class);
 
         //desde acá llamo al seeder PARA q se llene la DB con usuarios
         $this->call(UserSeeder::class);
@@ -34,7 +36,7 @@ class DatabaseSeeder extends Seeder
 
         //creo posts
         $this->call(PostSeeder::class);
+        
     }    
 
-        
 }

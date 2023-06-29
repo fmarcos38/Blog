@@ -4,6 +4,7 @@
         <input  wire:model="search" class="form-control" placeholder="ing nomb de un post"/>
     </div>
     
+    {{--  CREACION de la tabla q muestra los post  --}}
     @if ($posts->count())
     <div class="card-body">
         <table class="table table-striped">

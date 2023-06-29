@@ -12,7 +12,14 @@
 @stop
 
 @section('content')
-    @livewire('admin.posts-index')
+    {{--  es para el aleta una vez actualizada la categoría  --}}
+    @if (session('info'))
+        <div class="alert alert-success">
+            <strong>{{session('alert')}}</strong>
+        </div>
+    @endif
+    
+    @livewire('admin.posts-index') {{--  importo componente  --}}
 @stop
 
 @section('css')

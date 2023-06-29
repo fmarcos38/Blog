@@ -14,8 +14,8 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        //almaceno en una variable LA creación de los 100registros de posts
-        $posts = Post::factory(300)->create();
+        //almaceno en una variable LA creación de los 50registros de posts
+        $posts = Post::factory(50)->create();
 
         //itero la colección y creo para c/u una imagen -> con los datos q necesita para la relación id y type
         foreach($posts as $post){

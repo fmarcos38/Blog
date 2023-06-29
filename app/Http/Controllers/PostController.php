@@ -20,6 +20,10 @@ class PostController extends Controller
     //metodo q retorna una vista con nombre post.show y se le pasa el registro post
     public function show(Post $post){
 
+        //llamo al metodo de Policies
+        $this->authorize('published', $post);
+
+
         $similares = Post::where('category_id', $post->category_id)
                             ->where('status', 2)
                             ->latest('id')
